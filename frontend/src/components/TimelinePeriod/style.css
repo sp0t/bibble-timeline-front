@@ -1,0 +1,50 @@
+.timeline__period {
+  bottom: 0px;
+  color: #0A0A0A;
+  cursor: pointer;
+  font: normal normal 600 28px/10px Assistant;
+  height: 48px;
+  letter-spacing: 0px;
+  line-height: 48px;
+  position: absolute;
+  text-align: right; /* Align text to the right */
+  padding-right: 50px; /* Add 50px padding to the right */
+  right: 0px; /* Keep element right-aligned */
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.timeline__period-image {
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.6;
+}
+
+.timeline__period-image, .timeline__period-shadow {
+  bottom: 48px;
+  height: 253px;
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.timeline__period-shadow {
+  transition: height 0.2s ease-in;
+}
+
+.timeline--minimize .timeline__period-shadow {
+  height: 0px;
+}
+
+@media (max-height: 800px) {
+  .timeline__period {
+    font-size: 22px;
+    height: 40px;
+  }
+
+  .timeline__period-image, .timeline__period-shadow {
+    bottom: 40px;
+    height: 212px;
+  }
+}

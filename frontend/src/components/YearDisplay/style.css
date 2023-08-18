@@ -1,0 +1,29 @@
+.year-display {
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  color: #007EB4;
+  display: flex;
+  font: normal normal bold 24px Assistant;
+  height: 40px;
+  justify-content: center;
+  pointer-events: none;
+  width: 100px;
+}
+
+.year-display.year-display--in-dimensional {
+  left: 50%;
+  position: absolute;
+  top: 84px;
+  transform: translateX(-50%);
+  z-index: 400;
+}
+
+.year-display.timeline-focus__year {
+  border-radius: 50px;
+  left: -42px;
+  position: absolute;
+  top: -85px;
+  z-index: 400;
+  width: 80px;
+}

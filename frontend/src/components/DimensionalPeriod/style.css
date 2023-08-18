@@ -1,0 +1,10 @@
+.dimensional-period {
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}

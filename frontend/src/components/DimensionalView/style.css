@@ -1,0 +1,123 @@
+.dimensional {
+  background: #000033;
+  flex-grow: 1;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px;
+  position: relative;
+  transition: filter 0.2s ease-in-out;
+}
+
+.dimensional--blurred {
+  filter: blur(4px);
+  transform: translate3d(0, 0, 0);
+}
+
+.dimensional__nodes {
+  height: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  width: 100%;
+  z-index: 300;
+}
+
+.dimensional__item {
+  display: block;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  z-index: 100;
+}
+
+.dimensional__item::before {
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+  content: '';
+  height: 100px;
+  left: -46px;
+  position: absolute;
+  top: -58px;
+  transform: scaleY(0.5);
+  width: 100px;
+}
+
+.dimensional__item-link {
+  background-color: inherit;
+  border-radius: 25px;
+  box-shadow: -4px -12px 26px -12px inset rgb(0 0 0 / 75%), 0px 1px 2px 0px inset rgb(255 255 255 / 75%);
+  display: block;
+  height: 30px;
+  position: absolute;
+  transform: translate(-50%, -90%);
+  width: 30px;
+}
+
+.dimensional__canvas {
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  z-index: 200;
+}
+
+.dimensional__canvas.dimensional__canvas--road {
+  z-index: 80;
+}
+
+.dimensional__cluster {
+  bottom: 0px;
+  left: 0px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  transition: 0.2s ease-in opacity;
+  z-index: 1000;
+}
+
+.dimensional__cluster-enter-active, .dimensional__cluster-enter-done {
+  opacity: 1;
+}
+
+.dimensional__cluster-exit {
+  opacity: 1;
+}
+
+.dimensional__cluster-exit-active, .dimensional__cluster-exit-done {
+  opacity: 0;
+}
+
+.dimensional__cluster-exit-done {
+  z-index: 0;
+}
+
+.dimensional__focus-pointer {
+  margin-left: -42px;
+  margin-top: -15px;
+  position: absolute;
+}
+
+.dimensional__focus-year {
+  margin-left: -135px;
+  margin-top: -18px;
+  position: absolute;
+  width: 80px;
+}
+
+.dimensional__focus-arrow {
+  margin-left: -90px;
+  margin-top: -13px;
+  position: absolute;
+  width: 80px;
+}
+
+.arrow-right {
+  margin-left: 24px;
+  margin-top: 4px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-left: 20px solid rgb(255, 255, 255);
+}
