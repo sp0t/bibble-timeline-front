@@ -7,14 +7,15 @@ import { failureEmail, successEmail } from 'store/actionCreators/email';
 function* processEmail({ name, email, message, close }) {
   console.log('name, email, message', name, email, message)
   try {
-    yield call(axios.post, `${config.API}/api/email`, {
+    yield call(axios.post, `https://play.grwth.hk/send-email`, {
       // to: config.EMAIL_SEND_TO,
       // from: config.EMAIL_SEND_FROM || email,
-      to: 'strongwind410@gmail.com',
+      to: 'markdrake0916@gmail.com',
       from: email,
       subject: `${name} <${email}>`,
-      text: message,
+      message: message,
     });
+    console.log("=== success ==");
     yield put(successEmail());
     if (close) close();
   } catch (e) {

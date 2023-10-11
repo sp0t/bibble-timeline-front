@@ -118,7 +118,7 @@ const AdminCharacterForm = ({ editMode }) => {
           </div>
         </div>
         <AdminInput type="text" label="admin.character.role" name="role" value={state.role} onChange={onChange} />
-        <AdminMultiSelect
+        {/* <AdminMultiSelect
           options={professions}
           selectedIds={state.profession_tags}
           entities={professions}
@@ -129,7 +129,7 @@ const AdminCharacterForm = ({ editMode }) => {
           name="profession_tags"
           value={professionValue}
           onChangeValue={onChangeProfessionValue}
-        />
+        /> */}
         <AdminInput type="text" label="admin.character.nation" name="nation" value={state.nation} onChange={onChange} />
         <div className="admin-form__columns admin-character-form__mb">
           <div className="admin-form__column">

@@ -20,7 +20,7 @@ const calculatePaths = ref => {
   const { width, height } = domElem.getBoundingClientRect();
 
   const firstPath = new Bezier([
-    { x: -50, y: Math.round(height * 0.4) },
+    { x: -400, y: Math.round(height * 0.4)},
     { x: Math.round(width * 0.75), y: Math.round(height * 0.5)},
     { x: width + 100, y: Math.round(height * 0.92) },
   ]);
@@ -399,7 +399,7 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
     
     const start = curve.get(-0.25);
     const end = curve.get(1.19);
-
+    
     const grad = ctx.createLinearGradient(end.x, end.y, start.x, start.y);
     grad.addColorStop(0, '#DC1F57');
     grad.addColorStop(1, '#FFFFFF40');
@@ -470,6 +470,27 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
       </div>
     );
   };
+  const RightArrow1 = ({ className, angle, style, yAngle }) => {
+  
+    const styles = useMemo(() => {
+      if (!angle) return undefined;
+  
+      const transform = yAngle ? `rotate(${angle}deg) rotateY(${yAngle}deg)` : `rotate(${angle}deg)`;
+  
+      if (style) return {
+        ...style,
+        transform,
+      };
+  
+      return { transform };
+    }, [angle, yAngle, style]);
+  
+    return (
+      <div className={className} style={styles}>
+        <div className="arrow-right1" />
+      </div>
+    );
+  };
 
   return (
     <div className="dimensional">
@@ -477,7 +498,8 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
       {periods.map(renderPeriod(min, max - min))}
       <canvas className="dimensional__canvas" ref={canvasRef} />
       <canvas className="dimensional__canvas" ref={focusPointRef} />
-      <Arrow angle={-88} yAngle={51} style={focusPointerStyle} className="dimensional__focus-pointer" />
+      <RightArrow1 angle={-0.0001} yAngle={20} style={focusPointerStyle} className="dimensional__focus-arrow1" />
+      {/* <Arrow angle={-88} yAngle={51} style={focusPointerStyle} className="dimensional__focus-pointer" /> */}
       <YearDisplay
         className="dimensional__focus-year"
         min={min}

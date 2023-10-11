@@ -50,6 +50,7 @@ const CharacterAside = ({ zoomTo, min, max }) => {
     return (
       <React.Fragment>
         {ReactHtmlParser(`<div>${getLocalized(data, 'content', lang)}</div>`)}
+        {/* {ReactHtmlParser(`<div>${getLocalized(data, 'biography', lang)}</div>`)} */}
         {ReactHtmlParser(`<div>${getLocalized(data, 'appearances', lang)}</div>`)}
         {!data.links ? false : (
           <React.Fragment>
@@ -66,14 +67,16 @@ const CharacterAside = ({ zoomTo, min, max }) => {
     return (
       <React.Fragment>
         <div className="character-aside__title">
-          {getLocalized(data, 'name', lang)}
+          <p>
+            {getLocalized(data, 'name', lang)}
+          </p>
+          {checkLocalized(data, 'summary', lang) && (
+            <div className="character-aside__subsubtitle aside__subsubtitle">
+              {ReactHtmlParser(getLocalized(data, 'summary', lang))}
+            </div>
+          )}
           <CharacterDot data={data} className="character-aside__dot" ignorable />
         </div>
-        {checkLocalized(data, 'summary', lang) && (
-          <div className="character-aside__subsubtitle aside__subsubtitle">
-            {ReactHtmlParser(getLocalized(data, 'summary', lang))}
-          </div>
-        )}
       </React.Fragment>
     );
   }, [data]);
@@ -86,8 +89,8 @@ const CharacterAside = ({ zoomTo, min, max }) => {
         {data.tags ? (
           <TagCloud tags={tags} />
         ) : false}
-        <MediaGallery data={data.media} />
         <QuoteBlock data={data} />
+        <MediaGallery data={data.media} />
         <div className="aside__characters">
           {relatedCharacters.map(renderCharacter)}
         </div>
@@ -102,12 +105,12 @@ const CharacterAside = ({ zoomTo, min, max }) => {
   return (
     <Aside
       header={header}
-      fullscreenGallery={gallery}
       fullscreenContent={content}
+      fullscreenGallery={gallery}
       data={data}
     >
-      {gallery}
       {content}
+      {gallery}
     </Aside>
   );
 };

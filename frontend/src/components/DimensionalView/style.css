@@ -94,8 +94,8 @@
 }
 
 .dimensional__focus-pointer {
-  margin-left: -42px;
-  margin-top: -15px;
+  margin-left: -48px;
+  margin-top: -24px;
   position: absolute;
 }
 
@@ -112,6 +112,12 @@
   position: absolute;
   width: 80px;
 }
+.dimensional__focus-arrow1 {
+  margin-left: -45px;
+  margin-top: -13px;
+  position: absolute;
+  width: 80px;
+}
 
 .arrow-right {
   margin-left: 24px;
@@ -120,4 +126,13 @@
   border-bottom: 10px solid transparent;
   
   border-left: 20px solid rgb(255, 255, 255);
+}
+
+.arrow-right1 {
+  margin-left: 24px;
+  margin-top: 4px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-left: 20px solid #DC1F57;
 }
