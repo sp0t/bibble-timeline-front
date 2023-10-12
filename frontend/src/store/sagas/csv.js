@@ -418,3 +418,24 @@ export function* onUploadCSV() {
     yield fork(uploadCSV, action);
   }
 }
+
+// [
+//   {
+//     "type":"audio",
+//     "url":"http://127.0.0.1:1337/uploads/file_example_MP_3_700_KB_ea6ad6827c.mp3",
+//     "id":"21b9e95a-5f74-4d4f-886d-3ce7150da8a1",
+//     "title":"Hello",
+//     "description":"This is test audio",
+//     "isInternal":true,
+//     "toDelete":false
+//   },
+//   {
+//     "type":"audio",
+//     "url":"http://127.0.0.1:1337/uploads/file_example_MP_3_700_KB_7b26cd2200.mp3",
+//     "id":"97e3a4ea-2435-4a6b-a14c-0dc50be87ef1",
+//     "title":"HiHiHi",
+//     "description":"This is test 2",
+//     "isInternal":true,
+//     "toDelete":false
+//   }
+// ]

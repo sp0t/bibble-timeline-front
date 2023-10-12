@@ -8,9 +8,16 @@ import { getBookLink } from 'helpers/urls';
 import { joinHebrew } from 'helpers/lang';
 import './style.css';
 
+const detectAsideEvent = () => {
+  const message = JSON.stringify({
+    channel: 'hideTooltip'
+  });
+  window.parent.postMessage(message, '*');
+}
+
 const renderHoverBook = c => (
-  <li key={c.id} className="timeline-group__hover-element">
-    <Link to={getBookLink(c.id)} className="timeline-group__hover-link">
+  <li key={c.id} className="timeline-group__hover-element" onClick={detectAsideEvent}>
+    <Link to={getBookLink(c.id)} className="timeline-group__hover-link" >
       <span className="timeline-group__hover-name">{c.name}</span>
     </Link>
   </li>

@@ -13,6 +13,11 @@ const useTimelineGroupHover = () => {
     }
   }, [hovered]);
 
+  window.addEventListener('message', function(event) {
+    console.log('Received message from iframe:', event.data);
+    setHovered(false);
+  });
+
   return [hovered, onmouseenter, onmouseleave];
 };
 

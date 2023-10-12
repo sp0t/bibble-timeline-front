@@ -20,9 +20,14 @@ const calculatePaths = ref => {
   const { width, height } = domElem.getBoundingClientRect();
 
   const firstPath = new Bezier([
-    { x: -400, y: Math.round(height * 0.4)},
+    { x: -50, y: Math.round(height * 0.4)},
     { x: Math.round(width * 0.75), y: Math.round(height * 0.5)},
     { x: width + 100, y: Math.round(height * 0.92) },
+    //1400 0
+    // 1366 6
+    // 1280 10
+    // 1152 5
+    // 1024 7
   ]);
 
   const secondPath = new Bezier([
@@ -34,7 +39,8 @@ const calculatePaths = ref => {
   const thirdPath = new Bezier([
     { x: -50, y: Math.round(height * 0.42) },
     { x: Math.round(width * 0.5), y: Math.round(height * 0.5) },
-    { x: Math.round(width * 0.65), y: height + 100 },
+    { x: Math.round(width * 0.65), y: height + 100 +5 },
+    // 1280 5
   ]);
 
   return [firstPath, secondPath, thirdPath];
@@ -496,8 +502,8 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
     <div className="dimensional">
       <canvas className="dimensional__canvas dimensional__canvas--road" ref={roadRef} style={{ transform: 'translate(0.5, 0.5)' }} />
       {periods.map(renderPeriod(min, max - min))}
-      <canvas className="dimensional__canvas" ref={canvasRef} />
-      <canvas className="dimensional__canvas" ref={focusPointRef} />
+      {/* <canvas className="dimensional__canvas" ref={canvasRef} /> */}
+      <canvas className="dimensional__canvas1" ref={focusPointRef} />
       <RightArrow1 angle={-0.0001} yAngle={20} style={focusPointerStyle} className="dimensional__focus-arrow1" />
       {/* <Arrow angle={-88} yAngle={51} style={focusPointerStyle} className="dimensional__focus-pointer" /> */}
       <YearDisplay

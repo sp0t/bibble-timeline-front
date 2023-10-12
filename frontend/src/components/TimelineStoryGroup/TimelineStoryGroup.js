@@ -11,8 +11,15 @@ import { formatYear } from 'helpers/time';
 import { joinHebrew } from 'helpers/lang';
 import './style.css';
 
+const detectAsideEvent = () => {
+  const message = JSON.stringify({
+    channel: 'hideTooltip'
+  });
+  window.parent.postMessage(message, '*');
+}
+
 const renderHoverStory = (showStory, eventsByStories) => s => (
-  <li key={s.id} className="timeline-story-group__hover-story">
+  <li key={s.id} className="timeline-story-group__hover-story" onClick={detectAsideEvent}>
     {eventsByStories[s.id] && eventsByStories[s.id].length > 0 && (
       <i className="fa fa-eye timeline-story-group__hover-story-view" onClick={() => showStory(s.id)} />
     )}

@@ -126,10 +126,9 @@ const useGetCSV = (csvType) => {
       period.description = periods[i].description === undefined ? "": periods[i].description;
       period.majorEvents = periods[i].majorEvents === undefined ? "": periods[i].majorEvents;
       period.links = periods[i].links === undefined ? "": periods[i].links;
-      period.media = periods[i].media === [] ? "": parseMedias(periods[i].media);
+      period.media = periods[i].media === [] ? "": JSON.stringify(periods[i].media);
       dataArray.push(period)
     }
-    console.log(dataArray)
   }
 
   if (csvType === 'book') {
@@ -150,7 +149,7 @@ const useGetCSV = (csvType) => {
       book.summary = books[i].summary === undefined? "": books[i].summary;
       book.content = books[i].content === undefined ? []: books[i].content;
       book.links = books[i].links === undefined ? []: books[i].links;
-      book.media = books[i].media === undefined ? []: parseMedias(books[i].media);
+      book.media = books[i].media === undefined ? []: JSON.stringify(books[i]?.media);
       dataArray.push(book)
     }
   }
@@ -173,7 +172,7 @@ const useGetCSV = (csvType) => {
       story.characters = stories[i].characters === undefined ? "": findCharacterRealtation(stories[i].characters, characters);
       story.secondaryCharacters = stories[i].secondaryCharacters === undefined ? "": findCharacterRealtation(stories[i].secondaryCharacters, characters);
       story.links = stories[i].links === undefined ? []: stories[i].links;
-      story.media = stories[i].media === undefined ? []: parseMedias(stories[i].media);
+      story.media = stories[i].media === undefined ? []: JSON.stringify(stories[i].media);
       dataArray.push(story)
     }
   }
@@ -198,7 +197,7 @@ const useGetCSV = (csvType) => {
       event.location = events[i].location === undefined ? "": events[i].location;
       event.references = events[i].references === undefined ? "": events[i].references;
       event.links = events[i].links === undefined ? "":  events[i].links;
-      event.media = events[i].media === undefined ? []: parseMedias(events[i].media);
+      event.media = events[i].media === undefined ? []: JSON.stringify(events[i].media);
       dataArray.push(event)
     }
   }
@@ -227,7 +226,7 @@ const useGetCSV = (csvType) => {
       character.quotesource = characters[i].quotesource === undefined ? "": characters[i].quotesource;
       character.quote = characters[i].quote === undefined ? "": characters[i].quote;
       character.links = characters[i].links === undefined ? "": characters[i].links;
-      character.media = characters[i].media === undefined ? "": parseMedias(characters[i].media);
+      character.media = characters[i].media === undefined ? "": JSON.stringify(characters[i].media);
       character.showTimeLine = characters[i].showTimeLine === undefined ? []: parseShowTimeLine(characters[i].showTimeLine);
       dataArray.push(character)
     }

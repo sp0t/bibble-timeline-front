@@ -9,6 +9,13 @@ import { getLocalized } from 'helpers/util';
 import { getCharacterLink } from 'helpers/urls';
 import './style.css';
 
+const detectAsideEvent = () => {
+  console.log("===== detect aside ======");
+  const message = JSON.stringify({
+    channel: 'hideTooltip'
+  });
+  window.parent.postMessage(message, '*');
+}
 const renderCharacter = (c, i) => {
   if (i > 2) return false;
   if (c.showTimeLine === 1)
@@ -22,7 +29,7 @@ const renderCharacter = (c, i) => {
 };
 
 const renderHoverCharacter = c => (
-  <li key={c.id} className="timeline-group__hover-element">
+  <li key={c.id} className="timeline-group__hover-element" onClick={detectAsideEvent}>
     <Link to={getCharacterLink(c.id)} className="timeline-group__hover-link">
       <CharacterDot data={c} className="timeline-group__hover-dot" />
       <span className="timeline-group__hover-name">{c.name}</span>

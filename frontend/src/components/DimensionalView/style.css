@@ -60,6 +60,13 @@
   top: 0px;
   z-index: 200;
 }
+.dimensional__canvas1 {
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  z-index: 200;
+}
 
 .dimensional__canvas.dimensional__canvas--road {
   z-index: 80;
@@ -100,8 +107,8 @@
 }
 
 .dimensional__focus-year {
-  margin-left: -135px;
-  margin-top: -18px;
+  margin-left: -111px;
+  margin-top: -11px;
   position: absolute;
   width: 80px;
 }
@@ -120,8 +127,8 @@
 }
 
 .arrow-right {
-  margin-left: 24px;
-  margin-top: 4px;
+  margin-left: 48px;
+  margin-top: 12px;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   
@@ -129,10 +136,87 @@
 }
 
 .arrow-right1 {
-  margin-left: 24px;
-  margin-top: 4px;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+  margin-left: 36px;
+  margin-top: 0px;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
   
-  border-left: 20px solid #DC1F57;
+  border-left: 32px solid #DC1F57;
+}
+
+@media (max-width: 1366px) {
+  .dimensional__canvas1 {
+    left: 10px;
+    top: 10px;
+  }
+  .arrow-right1 {
+    margin-left: 36px;
+    margin-top: -2px;
+  }
+}
+@media (max-width: 1024px) {
+  .dimensional__canvas1 {
+    left: 0px;
+  }
+  .arrow-right1 {
+    margin-left: 36px;
+    margin-top: 0px;
+  }
+  .arrow-right {
+    margin-left: 48px;
+    margin-top: 13px;
+  }
+  .dimensional__focus-year {
+    margin-top: -10px;
+  }
+}
+@media (max-width: 768px) {
+  .dimensional__canvas1 {
+    left: 0px;
+  }
+  .arrow-right1 {
+    margin-top: -7px;
+
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+  }
+}
+
+@media (max-width: 576px) {
+  .dimensional__canvas1 {
+    left: -4px;
+    top: 12px;
+  }
+  .arrow-right1 {
+    margin-top: -2px;
+    margin-left: 32px;
+  }
+  .arrow-right {
+    margin-top: 12px;
+  }
+  .dimensional__focus-year {
+    margin-top: -10px;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .dimensional__canvas1 {
+    left: -2px;
+    top: 14px;
+  }
+  .arrow-right1 {
+    margin-top: -5px;
+    margin-left: 32px;
+    border-top: 24px solid transparent;
+    border-bottom: 24px solid transparent;
+    border-left: 16px solid #DC1F57;
+  }
+  .arrow-right {
+    margin-top: 14px;
+  }
+  .dimensional__focus-year {
+    margin-top: -10px;
+  }
+  
 }
