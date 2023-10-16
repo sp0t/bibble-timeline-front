@@ -6,15 +6,16 @@ import './style.css';
 
 const AdminRadioButton = ({value, options, onChange, name, className, label, noTranslation}) => {
 const { t } = useTranslation();
-const [innerValue, setInnerVaule] = useState(0) 
+const [innerValue, setInnerVaule] = useState(value) 
 useEffect(() => {
     if (value === 1)
         setInnerVaule(1);
     else    
         setInnerVaule(0);
 
-},[]);
+},[value]);
 
+console.log('=================value', value)
 const onChooseOption = useCallback((radiovalue) => {
     if(radiovalue === 'show'){
         setInnerVaule(1);

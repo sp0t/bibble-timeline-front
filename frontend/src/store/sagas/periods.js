@@ -81,7 +81,6 @@ export function* onDeletePeriod() {
 
 export function* addPeriod({ data }) {
   try {
-    console.log('Periods response====================', data)
     const [method, generatePath] = endpoints.CREATE;
     const response = yield call(
       callAuthenticatedApi,
@@ -90,7 +89,6 @@ export function* addPeriod({ data }) {
       JSONToFormData(data),
     );
 
-    console.log('Periods response====================', response)
     yield put(successAddPeriod(cleanApiObject(response.data.data)));
     yield call(fetchPeriods);
   } catch (e) {

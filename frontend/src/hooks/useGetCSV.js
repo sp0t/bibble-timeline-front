@@ -178,7 +178,6 @@ const useGetCSV = (csvType) => {
   }
 
   if (csvType === 'event') {
-    console.log(events)
     for(i = 0; i < events.length; i++) {
       if(checkEvent(events[i], dataArray))
         continue;
@@ -227,12 +226,10 @@ const useGetCSV = (csvType) => {
       character.quote = characters[i].quote === undefined ? "": characters[i].quote;
       character.links = characters[i].links === undefined ? "": characters[i].links;
       character.media = characters[i].media === undefined ? "": JSON.stringify(characters[i].media);
-      character.showTimeLine = characters[i].showTimeLine === undefined ? []: parseShowTimeLine(characters[i].showTimeLine);
+      character.showTimeLine = characters[i].showTimeLine === undefined ? 0: parseShowTimeLine(characters[i].showTimeLine);
       dataArray.push(character)
     }
   }
-
-  console.log(dataArray)
   return dataArray;
 };
 

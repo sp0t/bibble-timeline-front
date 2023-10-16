@@ -10,7 +10,6 @@ import { getCharacterLink } from 'helpers/urls';
 import './style.css';
 
 const detectAsideEvent = () => {
-  console.log("===== detect aside ======");
   const message = JSON.stringify({
     channel: 'hideTooltip'
   });

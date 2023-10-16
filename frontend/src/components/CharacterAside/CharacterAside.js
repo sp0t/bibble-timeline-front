@@ -45,16 +45,23 @@ const CharacterAside = ({ zoomTo, min, max }) => {
     }).filter(a => !!a);
   }, [characters, data]);
 
+  console.log('=====================data>', data)
+
   const content = useMemo(() => {
     if (!data) return false;
     return (
-      <React.Fragment>
+      <React.Fragment>  
         {ReactHtmlParser(`<div>${getLocalized(data, 'content', lang)}</div>`)}
         {/* {ReactHtmlParser(`<div>${getLocalized(data, 'biography', lang)}</div>`)} */}
-        {ReactHtmlParser(`<div>${getLocalized(data, 'appearances', lang)}</div>`)}
+        {!data.appearances ? false : (
+          <React.Fragment>
+            <div className="aside__paragraph-label">{t('aside.label.appearances')}</div>
+            {ReactHtmlParser(`<div>${getLocalized(data, 'appearances', lang)}</div>`)}
+          </React.Fragment>
+        )}
         {!data.links ? false : (
           <React.Fragment>
-            <div className="aside__paragraph-title">{t('admin.forMoreInformation')}</div>
+            <div className="aside__paragraph-label">{t('aside.label.deepening')}</div>
             {ReactHtmlParser(`<div>${getLocalized(data, 'links', lang)}</div>`)}
           </React.Fragment>
         )}
@@ -70,12 +77,6 @@ const CharacterAside = ({ zoomTo, min, max }) => {
           <p>
             {getLocalized(data, 'name', lang)}
           </p>
-          {checkLocalized(data, 'summary', lang) && (
-            <div className="character-aside__subsubtitle aside__subsubtitle">
-              {ReactHtmlParser(getLocalized(data, 'summary', lang))}
-            </div>
-          )}
-          <CharacterDot data={data} className="character-aside__dot" ignorable />
         </div>
       </React.Fragment>
     );
@@ -86,6 +87,12 @@ const CharacterAside = ({ zoomTo, min, max }) => {
 
     return (
       <React.Fragment>
+        {checkLocalized(data, 'summary', lang) && (
+          <div className="character-aside__subsubtitle aside__subsubtitle">
+            {ReactHtmlParser(getLocalized(data, 'summary', lang))}
+          </div>
+        )}
+        <CharacterDot data={data} className="character-aside__dot" ignorable />
         {data.tags ? (
           <TagCloud tags={tags} />
         ) : false}
@@ -108,9 +115,9 @@ const CharacterAside = ({ zoomTo, min, max }) => {
       fullscreenContent={content}
       fullscreenGallery={gallery}
       data={data}
-    >
-      {content}
+      >
       {gallery}
+      {content}
     </Aside>
   );
 };

@@ -51,6 +51,10 @@
   letter-spacing: 0px;
 }
 
+.admin-media__audio {
+  width: 600px;
+}
+
 /* .media-audio__description::before {
   content: ' — ';
 } */
