@@ -4,7 +4,9 @@ const useTimelineGroupHover = () => {
   const [hovered, setHovered] = useState(false);
 
   const onmouseenter = useCallback(() => {
-    if (!hovered) setHovered(true);
+    if (!hovered) {
+      setHovered(true);
+    }
   }, [hovered]);
 
   const onmouseleave = useCallback(e => {

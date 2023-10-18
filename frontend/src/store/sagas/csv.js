@@ -174,38 +174,52 @@ const parseGender = gender => {
 }
 
 const parseMedia = media => {
-  const isYoutube = isYoutubeUrl(media);
-  const isAudio = isAudioFormatSupported(media);
-
-  if (isYoutube) return {
-    id: uuid(),
-    type: 'youtube',
-    youtubeId: getYoutubeId(media),
-    title: '',
-    description: '',
-  };
-
-  if (isAudio) return {
-    id: uuid(),
-    type: 'audio',
-    url: media,
-    title: '',
-    description: '',
-  };
-
   return {
     id: uuid(),
-    type: 'image',
-    url: media,
-    title: '',
-    description: '',
+    type: media.type,
+    url: media.url,
+    title: media.title,
+    description: media.description,
   };
+  // const isYoutube = isYoutubeUrl(media.url);
+  // const isAudio = isAudioFormatSupported(media.url);
+
+  // if (isYoutube) return {
+  //   id: uuid(),
+  //   type: 'youtube',
+  //   youtubeId: getYoutubeId(media),
+  //   title: '',
+  //   description: '',
+  // };
+
+  // if (isAudio) return {
+  //   id: uuid(),
+  //   type: 'audio',
+  //   url: media,
+  //   title: '',
+  //   description: '',
+  // };
+
+  // return {
+  //   id: uuid(),
+  //   type: 'image',
+  //   url: media,
+  //   title: '',
+  //   description: '',
+  // };
 };
 
 const parseMedias = medias => {
-  if (!medias) return [];
-  const list = medias.split(',').map(s => s.trim());
-  return list.map(parseMedia);
+  var list = []
+  var ret = []
+  if (!medias) return list;
+
+  list = JSON.parse(medias);
+
+  for (var i=0; i<list.length; i++) {
+    ret.push(parseMedia(list[i]))
+  }
+  return ret;
 };
 
 const parsePeriod = row => {
@@ -326,6 +340,7 @@ const parseCharacter = data => row => {
 }
 
 function* uploadCSV({ csvType, content }) {
+  console.log('=====================> upload csv file data ======>', content)
   const data = yield select(getData);
 
   const rows = content.slice(1);

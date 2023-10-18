@@ -147,6 +147,24 @@ function App() {
 
   const isLoading = useSelector(isDataLoading);
 
+  const loadAccessibilityScript = () => {
+    var script = document.createElement('script');
+    script.src = 'https://js.nagich.co.il/core/4.1.1/accessibility.js';
+    script.defer = true;
+    script.integrity =
+      'sha512-Sa9czHEwHavqXKmdJEaYdtc0YzuvwZmRRZoovLeWq8Lp5R4ZB1LLCSBoQm6ivUfuncFOM+/9oR08+WCAcBH61Q==';
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('data-cfasync', true);
+
+    // Append the script to the document's head
+    document.head.appendChild(script);
+  };
+
+  // Load the accessibility script when the component mounts
+  useEffect(() => {
+    loadAccessibilityScript();
+  }, []);
+
   const [zoomTo, setZoomTo] = useState(null);
   const onZoom = useCallback((min, max) => {
     setZoomTo([min, max]);

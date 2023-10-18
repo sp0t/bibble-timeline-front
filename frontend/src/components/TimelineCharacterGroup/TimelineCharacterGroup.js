@@ -28,19 +28,32 @@ const renderCharacter = (c, i) => {
 };
 
 const renderHoverCharacter = c => (
-  <li key={c.id} className="timeline-group__hover-element" onClick={detectAsideEvent}>
+  <>
+  {c.showTimeLine === 1 && <li key={c.id} className="timeline-group__hover-element" onClick={detectAsideEvent}>
     <Link to={getCharacterLink(c.id)} className="timeline-group__hover-link">
       <CharacterDot data={c} className="timeline-group__hover-dot" />
       <span className="timeline-group__hover-name">{c.name}</span>
     </Link>
-  </li>
+  </li>}
+  </>
 );
 
 const TimelineCharacterGroup = ({ group, width, min, max }) => {
   const lang = useLanguage();
 
   const { data, fromDate, endDate } = group;
-  const characters = data;
+  
+  const getCharcaters = (characters) => {
+      var ret = [];
+      for(var i=0; i < characters.length; i++) {
+        if (characters[i].showTimeLine === 1)
+        ret.push(characters[i]);
+    }
+    
+    return ret;
+  }
+
+  const characters = getCharcaters(data);
 
   const text = useMemo(() => {
     let text = '';
@@ -113,10 +126,10 @@ const TimelineCharacterGroup = ({ group, width, min, max }) => {
       </Link>
     );
   }*/
-  if (showState(data))
+  if (showState(characters))
     return (
       <TimelineGroup
-        data={data}
+        data={characters}
         fromDate={fromDate}
         endDate={endDate}
         min={min}
@@ -128,9 +141,9 @@ const TimelineCharacterGroup = ({ group, width, min, max }) => {
           <React.Fragment>
             <div className="timeline-character-group__characters">
               {characters.map(renderCharacter)}
-              {getCharacterLength(data) > 3 && (
+              {getCharacterLength(characters) > 3 && (
                 <div className="timeline-character-group__more">
-                  {`+${getCharacterLength(data) - 3}`}
+                  {`+${getCharacterLength(characters) - 3}`}
                 </div>
               )}
             </div>

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, useRef, useLayoutEffect } from 'react';
+import React, { useMemo, useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useTimelineGroupHover from 'hooks/useTimelineGroupHover';
 import config from 'constants/config';
@@ -21,6 +21,7 @@ const TimelineGroup = ({
   tooltipClassName,
   linkFn,
 }) => {
+  
   const [hovered, onmouseenter, onmouseleave] = useTimelineGroupHover();
 
   const [groupShift, groupWidth, styles] = useMemo(() => {
@@ -100,7 +101,7 @@ const TimelineGroup = ({
       <div
         className={classes}
         style={styles}
-        onMouseEnter={onmouseenter}
+        onMouseOver={onmouseenter}
         data-group-id={id}
       >
         <div className={visibleClasses} data-group-id={id}>
@@ -108,7 +109,7 @@ const TimelineGroup = ({
         </div>
       </div>
       {hovered && (
-        <div className={hoverClasses} style={hoverStyles} data-group-id={id}>
+        <div className={hoverClasses} style={hoverStyles} data-group-id={id} >
           {renderTooltip(id)}
           <div className="timeline-group__hover-bridge" ref={hoverRefCallback} data-group-id={id} />
         </div>
