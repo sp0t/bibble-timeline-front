@@ -112,7 +112,7 @@ const TimelineGroup = ({
         </div>
       </div>
       {hovered && (
-        <div className={hoverClasses} style={hoverStyles} data-group-id={id} >
+        <div className={hoverClasses} style={hoverStyles} data-group-id={id}>
           {renderTooltip(id)}
           <div className="timeline-group__hover-bridge" ref={hoverRefCallback} data-group-id={id} />
         </div>

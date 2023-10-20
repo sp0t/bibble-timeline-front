@@ -30,17 +30,17 @@ const SendEmailModal = ({ onClose }) => {
 
   const onConfirm = useCallback(() => {
     if (!validateEmail(email)) {
-      notify(t('sendEmail.mail'));
+      notify(t('sendEmail.warn.email'));
       return;
     }
 
     if (name === '') {
-      notify(t('sendEmail.name'));
+      notify(t('sendEmail.warn.name'));
       return;
     }
 
     if (message === '') {
-      notify(t('sendEmail.content'));
+      notify(t('sendEmail.warn.content'));
       return;
     }
 
