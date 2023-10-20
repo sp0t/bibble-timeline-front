@@ -1,12 +1,14 @@
-import React, { useMemo, useCallback } from 'react';
+import './style.css';
+
+import React, { useCallback, useMemo } from 'react';
+
 import { Link } from 'react-router-dom';
 import ScrollArea from 'react-scrollbar';
 import TimelineGroup from 'components/TimelineGroup';
-import useLanguage from 'hooks/useLanguage';
-import { getLocalized } from 'helpers/util';
 import { getBookLink } from 'helpers/urls';
+import { getLocalized } from 'helpers/util';
 import { joinHebrew } from 'helpers/lang';
-import './style.css';
+import useLanguage from 'hooks/useLanguage';
 
 const detectAsideEvent = () => {
   const message = JSON.stringify({

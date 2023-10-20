@@ -1,28 +1,30 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import './style.scss';
+
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { getBookLink, getCharacterLink, getEventLink, getPeriodLink, getStoryLink } from 'helpers/urls';
+
+import BookAside from 'components/BookAside';
+import CharacterAside from 'components/CharacterAside';
 import DimensionalView from 'components/DimensionalView';
+import EventAside from 'components/EventAside';
+import Help from 'components/Help';
+import Logo from 'components/Logo';
+import PeriodAside from 'components/PeriodAside';
+import Search from 'components/SearchBar';
+import SecuredPart from 'components/SecuredPart';
+import StoryAside from 'components/StoryAside';
 import TimelineView from 'components/TimelineView';
 import WelcomeModal from 'components/WelcomeModal';
-import StoryAside from 'components/StoryAside';
-import CharacterAside from 'components/CharacterAside';
-import EventAside from 'components/EventAside';
-import BookAside from 'components/BookAside';
-import PeriodAside from 'components/PeriodAside';
-import SecuredPart from 'components/SecuredPart';
-import Logo from 'components/Logo';
-import Search from 'components/SearchBar';
-import Help from 'components/Help';
 import Zoom from 'components/Zoom';
+import config from 'constants/config';
+import { filterSortedByRange } from 'helpers/time';
+import { fromRange } from 'helpers/util';
+import { isDataLoading } from 'store/selectors/data';
 import useData from 'hooks/useData';
 import useDrag from 'hooks/useDrag';
 import useMobile from 'hooks/useMobile';
-import config from 'constants/config';
-import { fromRange } from 'helpers/util';
-import { getStoryLink, getCharacterLink, getEventLink, getBookLink, getPeriodLink } from 'helpers/urls';
-import { filterSortedByRange } from 'helpers/time';
-import { isDataLoading } from 'store/selectors/data';
-import './style.scss';
+import { useSelector } from 'react-redux';
 
 const skipWelcomeModal = window.localStorage.getItem('skipWelcomeModal');
 
@@ -39,8 +41,8 @@ const RIGHT_RANGE = 1 - config.FOCUS_POINT / 100;
 
 const minDesktopRange = Math.round(config.INITIAL_RANGE * config.MIN_DESKTOP_ZOOM / 100);
 const maxDesktopRange = Math.round(config.INITIAL_RANGE * config.MAX_DESKTOP_ZOOM / 100);
-const minMobileRange =  Math.round(config.INITIAL_RANGE * config.MIN_MOBILE_ZOOM / 100);
-const maxMobileRange =  Math.round(config.INITIAL_RANGE * config.MAX_MOBILE_ZOOM / 100);
+const minMobileRange = Math.round(config.INITIAL_RANGE * config.MIN_MOBILE_ZOOM / 100);
+const maxMobileRange = Math.round(config.INITIAL_RANGE * config.MAX_MOBILE_ZOOM / 100);
 
 const useScroll = (data, zoomTo) => {
   const [current, setCurrent] = useState(config.INITIAL_YEAR);
@@ -178,16 +180,27 @@ function App() {
   ] = useScroll(data, onZoom);
   const [showWelcomeModal, onCloseWelcomeModal] = useWelcomeModal();
 
-  const range = max - min;
+  const isMobile = useMobile();
 
+  const [range, setRange] = useState(max - min);
+
+  useEffect(() => {
+    if (isMobile) {
+      setZoomTo([97061, 97081]);
+      setRange(20);
+    }
+  }, [isMobile])
+
+  useEffect(() => {
+    setRange(max - min);
+  }, [max, min]);
   const [minimized, setMinimized] = useState(false);
   const onMinimize = useCallback(() => {
     return setMinimized(a => !a);
   }, []);
 
   useEffect(() => {
-    const triggerResize = () =>  window.dispatchEvent(new Event('resize'));
-
+    const triggerResize = () => window.dispatchEvent(new Event('resize'));
     triggerResize();
 
     let animate = { current: true };
@@ -203,7 +216,7 @@ function App() {
     loop();
 
     return () => window.setTimeout(triggerResize, 0);
-    
+
   }, [minimized]);
 
   const [
@@ -276,10 +289,10 @@ function App() {
           />
           <SecuredPart />
         </React.Fragment>
-      }/>
+      } />
       <Route path="*" element={
         <div className="app">
-          <Search/>
+          <Search />
           <Logo />
           <div className="app__layout-horizontal">
             <div
@@ -305,7 +318,7 @@ function App() {
               />
             </div>
             <Help />
-            <Zoom range={max - min} min={min} max={max} zoomTo={onZoom} />
+            <Zoom range={range} min={min} max={max} zoomTo={onZoom} />
             {showWelcomeModal && !skipWelcomeModal && <WelcomeModal onClose={onCloseWelcomeModal} />}
             <Routes>
               <Route path={storyLink} element={<StoryAside zoomTo={onZoom} min={min} max={max} />} />

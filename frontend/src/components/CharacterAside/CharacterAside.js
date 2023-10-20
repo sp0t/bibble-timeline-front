@@ -45,7 +45,6 @@ const CharacterAside = ({ zoomTo, min, max }) => {
     }).filter(a => !!a);
   }, [characters, data]);
 
-  console.log('=====================data>', data)
 
   const content = useMemo(() => {
     if (!data) return false;

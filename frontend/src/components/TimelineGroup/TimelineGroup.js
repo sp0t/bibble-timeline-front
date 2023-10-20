@@ -1,9 +1,11 @@
-import React, { useMemo, useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
+import './style.css';
+
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
 import { Link } from 'react-router-dom';
-import useTimelineGroupHover from 'hooks/useTimelineGroupHover';
 import config from 'constants/config';
 import { inRange } from 'helpers/util';
-import './style.css';
+import useTimelineGroupHover from 'hooks/useTimelineGroupHover';
 
 const emptyStyles = {};
 
@@ -21,7 +23,6 @@ const TimelineGroup = ({
   tooltipClassName,
   linkFn,
 }) => {
-  
   const [hovered, onmouseenter, onmouseleave] = useTimelineGroupHover();
 
   const [groupShift, groupWidth, styles] = useMemo(() => {
@@ -96,12 +97,14 @@ const TimelineGroup = ({
     </div>
   );
 
+
   return (
     <React.Fragment>
       <div
         className={classes}
         style={styles}
         onMouseOver={onmouseenter}
+        onMouseLeave={onmouseleave}
         data-group-id={id}
       >
         <div className={visibleClasses} data-group-id={id}>
@@ -115,7 +118,7 @@ const TimelineGroup = ({
         </div>
       )}
       {hovered && (
-        <div className="timeline-group__hover-exit" onMouseEnter={onmouseleave} />
+        <div className="timeline-group__hover-exit" onMouseLeave={onmouseleave} />
       )}
     </React.Fragment>
   );
