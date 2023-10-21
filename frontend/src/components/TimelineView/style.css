@@ -83,24 +83,38 @@
   }
 }
 
+@media (max-width:600px) {
+  .timeline__minimize {
+    margin-left: -40px;
+    width: 260px;
+  }
+}
+
+@media (max-width:576px) {
+  .timeline__minimize {
+    margin-left: -60px;
+    width: 240px;
+  }
+}
+
 @media (max-width:425px) {
   .timeline__minimize {
-    margin-left: -80px;
-    width: 360px;
+    margin-left: -60px;
+    width: 220px;
   }
 }
 
 @media (max-width:375px) {
   .timeline__minimize {
-    margin-left: -100px;
-    width: 360px;
+    margin-left: -60px;
+    width: 200px;
   }
 }
 
 @media (max-width:320px) {
   .timeline__minimize {
     margin-left: -100px;
-    width: 320px;
+    width: 200px;
   }
 }
 

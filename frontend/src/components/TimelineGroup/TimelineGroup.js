@@ -99,12 +99,36 @@ const TimelineGroup = ({
 
 
   return (
-    <React.Fragment>
+    // <React.Fragment>
+    //   <div
+    //     className={classes}
+    //     style={styles}
+    //     onMouseOver={onmouseenter}
+    //     onMouseLeave={onmouseleave}
+    //     data-group-id={id}
+    //   >
+    //     <div className={visibleClasses} data-group-id={id}>
+    //       {visibleContent}
+    //     </div>
+    //   </div>
+    //   {hovered && (
+    //     <div className={hoverClasses} style={hoverStyles} data-group-id={id}>
+    //       {renderTooltip(id)}
+    //       <div className="timeline-group__hover-bridge" ref={hoverRefCallback} data-group-id={id} />
+    //     </div>
+    //   )}
+    //   {hovered && (
+    //     <div className="timeline-group__hover-exit" onMouseLeave={onmouseleave} />
+    //   )}
+    // </React.Fragment>
+    <div
+      onMouseOver={onmouseenter}
+      onMouseLeave={onmouseleave}
+    >
       <div
         className={classes}
         style={styles}
-        onMouseOver={onmouseenter}
-        onMouseLeave={onmouseleave}
+
         data-group-id={id}
       >
         <div className={visibleClasses} data-group-id={id}>
@@ -117,10 +141,10 @@ const TimelineGroup = ({
           <div className="timeline-group__hover-bridge" ref={hoverRefCallback} data-group-id={id} />
         </div>
       )}
-      {hovered && (
+      {/* {hovered && (
         <div className="timeline-group__hover-exit" onMouseLeave={onmouseleave} />
-      )}
-    </React.Fragment>
+      )} */}
+    </div>
   );
 };
 

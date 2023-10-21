@@ -37,6 +37,7 @@
   white-space: pre-line;
   letter-spacing: 0px;
   margin-bottom: 20px;
+  DIRECTION: rtl;
 }
 
 .welcome__link {

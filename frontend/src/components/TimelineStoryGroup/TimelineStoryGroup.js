@@ -127,21 +127,18 @@ const TimelineStoryGroup = ({ group, min, max, width }) => {
     return text;
   }, [data, lang]);
 
-  let hoverClasses = 'timeline-story-group__hover';
-  if (viewedStory) hoverClasses += ' timeline-story-group__hover--events';
-  if (viewedStory && viewedEvents.length < 1) hoverClasses += ' timeline-story-group__hover--invisible';
+  let hoverClasses = 'timeline-group__hover';
+  if (viewedStory) hoverClasses += ' timeline-group__hover--events';
+  if (viewedStory && viewedEvents.length < 1) hoverClasses += ' timeline-group__hover--invisible';
   if (
     (!viewedStory && data.length > 3)
     || (viewedStory && viewedEvents.length > 3)
-  ) hoverClasses += ' timeline-story-group__hover--list';
+  ) hoverClasses += ' timeline-group__hover--list';
 
   const renderTooltip = useCallback(id => {
     return (
       <div className={hoverClasses} data-group-id={id}>
-        {/* <div className="timeline-story-group__hover-wrapper"> */}
         <div className="timeline-group__hover-wrapper">
-          {/* {!viewedStory && renderStoryListHover(data, eventsByStories, showStory)}
-          {viewedStory && renderEventListHover(t, showStories, viewedEvents, viewedStory)} */}
           <ScrollArea
             vertical
             smoothScrolling
@@ -156,7 +153,7 @@ const TimelineStoryGroup = ({ group, min, max, width }) => {
         </div>
       </div>
     );
-  }, [data, eventsByStories, viewedEvents, viewedStory, hoverClasses]);
+  }, []);
 
   if (!data.length) return false;
 
