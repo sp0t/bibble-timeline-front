@@ -1,20 +1,17 @@
-import './style.css';
-
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { easeShare, fromRange, hexToRGBA, inRange } from 'helpers/util';
-
-import Arrow from 'components/Arrow';
-import { Bezier } from 'bezier-js/dist/bezier';
+import React, { useRef, useState, useCallback, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { Bezier} from 'bezier-js/dist/bezier';
 import { CSSTransition } from 'react-transition-group';
 import Cluster from 'components/Cluster';
-import DimensionalPeriod from 'components/DimensionalPeriod';
-import { Link } from 'react-router-dom';
 import StoryPreview from 'components/StoryPreview';
 import YearDisplay from 'components/YearDisplay';
-import config from 'constants/config';
-import { getEventLink } from 'helpers/urls';
+import DimensionalPeriod from 'components/DimensionalPeriod';
+import Arrow from 'components/Arrow';
 import useData from 'hooks/useData';
-import useMobile from 'hooks/useMobile';
+import config from 'constants/config';
+import { fromRange, inRange, easeShare, hexToRGBA } from 'helpers/util';
+import { getEventLink } from 'helpers/urls';
+import './style.css';
 
 const calculatePaths = ref => {
   const domElem = ref.current;
@@ -302,7 +299,7 @@ const renderDataPoint = (characters, paths, min, range, clustered, earliest) => 
 
   const date = data.endDate || data.date;
 
-  const position = (date - min) / range >= 1? 1 : (date - min) / range <= 0? 0 :(date-min)/range;
+  const position = (date - min) / range;
   const easedPosition = easeShare(1 - position);
 
   const { x, y } = path.get(easedPosition);
@@ -362,7 +359,6 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
   const canvasRef = useRef(null);
   const roadRef = useRef(null);
   const focusPointRef = useRef(null);
-  const isMobile = useMobile();
 
   const { characters, periods } = useData();
 
@@ -398,9 +394,7 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
     };
   }, [min, max]);
 
-  const [focusPointerStyle, setFocusPointerStyle] = useState({top:0, left:0});
-  const [focusPointerStyleYear, setFocusPointerStyleYear] = useState({top:0, left:0});
-  const [focusPointerStyleArrow, setFocusPointerStyleArrow] = useState({top:0, left:0});
+  const [focusPointerStyle, setFocusPointerStyle] = useState(undefined);
 
   const repaintFocusRef = useCallback(() => {
     if (!focusPointRef.current || !paths || !paths[0]) return false;
@@ -440,34 +434,10 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
       canvas.width = width;
       canvas.height = height;
       const { x, y } = repaintFocusRef();
-
-      if (!isMobile) {
-        setFocusPointerStyle({
-          top: y,
-          left: x,
-        });
-        setFocusPointerStyleYear({
-          top: y,
-          left: x - 9,
-        });
-        setFocusPointerStyleArrow({
-          top: y,
-          left: x + 9,
-        });
-      } else {
-        setFocusPointerStyle({
-          top: y,
-          left: x,
-        });
-        setFocusPointerStyleYear({
-          top: y,
-          left: x,
-        });
-        setFocusPointerStyleArrow({
-          top: y,
-          left: x,
-        });
-      }
+      setFocusPointerStyle({
+        top: y,
+        left: x,
+      });
     }
 
     resize();
@@ -542,10 +512,9 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
         max={max}
         angle={-0.0001}
         yAngle={30}
-        style={focusPointerStyleYear}
+        style={focusPointerStyle}
       />
-      <RightArrow angle={-0.0001} yAngle={20} style={focusPointerStyleArrow} className="dimensional__focus-arrow" />
-
+      <RightArrow angle={-0.0001} yAngle={20} style={focusPointerStyle} className="dimensional__focus-arrow" />
       <ul
         className="dimensional__nodes"
         ref={containerRef}

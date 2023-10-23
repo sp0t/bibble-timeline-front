@@ -11,6 +11,12 @@
   width: 100px;
 }
 
+@media (max-width:768px) {
+  .year-display {
+    width: 80px;
+  }
+}
+
 .year-display.year-display--in-dimensional {
   left: 50%;
   position: absolute;
