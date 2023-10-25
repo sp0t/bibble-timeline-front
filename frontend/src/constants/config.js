@@ -12,7 +12,8 @@ const config = {
   // For each year in the 3d part this amount of years will be shown in timeline
   BOTTOM_RATIO: 12.5,
   MIN_YEAR: 96241,
-  MAX_YEAR: 102519,
+  // MAX_YEAR: 102519,
+  MAX_YEAR: 100050,
   MIN_INPUT_YEAR: 96241,
   MAX_INPUT_YEAR: 99837,
   MIN_RANGE: 100,

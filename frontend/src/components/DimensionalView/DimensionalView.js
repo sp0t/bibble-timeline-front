@@ -369,6 +369,8 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
   const [clustered, setClustered] = useState(emptyArray);
   const [visibleClustered, setVisibleClustered] = useState(emptyArray);
 
+  // console.log('DimensionalView=>', data)
+
   const paths = usePaths(containerRef);
   useCanvas(containerRef, canvasRef, data, min, max, paths, clustered);
   useRoad(containerRef, roadRef, paths);
@@ -532,10 +534,8 @@ const DimensionalView = ({ data, min, max, onZoom, children }) => {
     <div className="dimensional">
       <canvas className="dimensional__canvas dimensional__canvas--road" ref={roadRef} style={{ transform: 'translate(0.5, 0.5)' }} />
       {periods.map(renderPeriod(min, max - min))}
-      {/* <canvas className="dimensional__canvas" ref={canvasRef} /> */}
       <canvas className="dimensional__canvas1" ref={focusPointRef} />
       <RightArrow1 angle={-0.0001} yAngle={20} style={focusPointerStyle} className="dimensional__focus-arrow1" />
-      {/* <Arrow angle={-88} yAngle={51} style={focusPointerStyle} className="dimensional__focus-pointer" /> */}
       <YearDisplay
         className="dimensional__focus-year"
         min={min}
